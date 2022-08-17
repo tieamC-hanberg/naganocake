@@ -2,6 +2,17 @@
   <thead>
   </thead>
   <tbody>
-    <!--each文-->
+    <% items.each do |item| %>
+      <tr>
+        <td><%= link_to(item.id) do %>
+            <%= image_tag item.get_profile_image, size:'50x50' %>
+            <% end %>
+        </td>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <!--<td>個数選択</td>-->
+        <td><%= link_to "カートに入れる" %></td>
+      </tr>
   </tbody>
 </table>
