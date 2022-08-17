@@ -1,0 +1,21 @@
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @xxx.each do |xxx| %>
+      <tr>
+        <td><%=  %></td>　郵便番号表示
+        <td><%=  %></td>　住所表示
+        <td><%=  %></td>　宛名表示
+        <td><%= link_to "編集 ", xxx_path(@xxx.id), class:"btn btn-success" %></td>
+        <td><%= link_to "削除", xxx_path(@xxx), class:"btn btn-danger", method: :delete %><td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
