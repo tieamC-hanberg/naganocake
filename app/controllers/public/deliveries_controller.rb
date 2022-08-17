@@ -6,10 +6,13 @@ class Public::DeliveriesController < ApplicationController
   
   def create
     @deliverie = Deliverie.find(params[:id])
+    #@post_image.user_id = current_user.id
+    @deliverie.save
     @deliveries = Deliverie.all
   end
   
   def edit
+    @deliverie = Deliverie.find(params[:id])
   end
   
   private
