@@ -7,14 +7,15 @@
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
+        <!--customerログイン後のヘッダー-->
+        <% if customer_signed_in? %>
           <li>
             <%= link_to xxx_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i> マイページ
             <% end %>
           </li>
           <li>
-            <%=  link_to xxx_path,class: 'nav-link text-light' do %>
+            <%=  link_to public_items_path,class: 'nav-link text-light' do %>
               <i class="fas fa-users"></i> 商品一覧
             <% end %>
           </li>
@@ -28,15 +29,35 @@
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
+        <!--adminログイン後のヘッダー-->
+        <% elsif  admin_signed_in? %>
+          <li>
+            <%=  link_to admin_items_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-users"></i> 商品一覧
+          </li>
+          <li>
+            会員一覧
+          </li>
+          <li>
+            注文履歴一覧
+          </li>
+          <li>
+            <%=  link_to admin_genres_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-users"></i> ジャンル一覧
+          </li>
+          <li>
+            ログアウト
+          </li>
+        <!--両者ログイン前-->
         <% else %>
           <li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> TOP
+            <%= link_to home_about_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-home"></i> About
             <% end %>
           </li>
           <li>
-            <%= link_to home_about_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> About
+            <%= link_to public_item_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-link"></i> 商品一覧
             <% end %>
           </li>
           <li>
@@ -55,3 +76,4 @@
     </div>
   </nav>
 </header>
+

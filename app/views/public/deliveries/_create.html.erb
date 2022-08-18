@@ -1,4 +1,4 @@
-<%= form_with model:delivery, url: public_deliveries_path, local:true do |f| %>
+<%= form_with model: delivery, url: public_deliveries_path, local:true, method: :post do |f| %>
   <div class="form-group">
     <%= f.label "郵便番号(ハイフンなし)" %>
     <%= f.text_field :postcode %>
