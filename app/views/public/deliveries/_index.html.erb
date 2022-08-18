@@ -8,14 +8,14 @@
     </tr>
   </thead>
   <tbody>
-    <% deliveries.each do |delivery| %>
+    <% @deliveries.each do |f| %>
       <tr>
         <!--郵便番号表示-->
-        <td><%= delivery.postcode %></td>
+        <td><%= f.postcode %></td>
         <!--住所表示-->
-        <td><%= delivery.address %></td>
+        <td><%= f.address %></td>
         <!--宛名表示-->
-        <td><%= delivery.name %></td>
+        <td><%= f.name %></td>
         <td><%= link_to "編集 ", edit_deliverie_path(@delivery.id), class:"btn btn-success" %></td>
         <td><%= link_to "削除", delivery_path(@delivery), class:"btn btn-danger", method: :delete %><td>
       </tr>
