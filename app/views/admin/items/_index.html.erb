@@ -11,11 +11,15 @@
   <tbody>
     <% items.each do |item| %>
     <tr>
-      <td><%= item.item_id %></td>
-      <td><%= item.item_name %></td>
+      <td><%= item.id %></td>
+      <td><%= link_to item.item_name, admin_item_path(item.id) %></td>
       <td><%= item.price %></td>
-      <td><%= item.genre_id %></td>
-      <td><%= item.sale_status %></td>
+      <td><%= item.genre.name %></td>
+      <% if item.sale_status == true %>
+      <td><%= "販売中" %></td>
+      <% else %>
+      <td><%= "売り切れ" %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

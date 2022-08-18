@@ -1,12 +1,23 @@
 <h2>商品詳細</h2>
 <table class ='table'>
   <tr>
-    <td><%= image_tag @items.admin.get_profile_image, size:"100x100" %></td>
+    <td><%= image_tag @items.image, size:"100x100" %>
+    </td>
     <td>商品名<%= @items.item_name %></td>
+  </tr>
+  <tr>
     <td>商品説明<%= @items.item_description %></td>
-    <td>ジャンル<%= @items.genre_id %></td>
+  </tr>
+  <tr>
+    <td>ジャンル<%= @items.genre.name %></td>
+  </tr>
+  <tr>
     <td>税込価格<%= @items.price %></td>
+  </tr>
+  <tr>
     <td>販売ステータス<%= @items.sale_status %></td>
-    <td><%= link_to '編集', edit_item_path(@items.id), class: "btn btn-sm btn-success" %></td>
+  </tr>
+  <tr>
+    <td><%= link_to '編集', edit_admin_item_path(@items.id), class: "btn btn-sm btn-success" %></td>
   </tr>
 </table>

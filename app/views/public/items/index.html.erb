@@ -1,6 +1,4 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-8 offset-md-1'>
+
       <h2>商品一覧</h2>
       <table class='table table-hover table-inverse'>
         <thead>
@@ -15,7 +13,6 @@
             <td><%= item.item_name %></td>
             <td><%= item.item_description %></td>
             <td><%= item.item_price %></td>
-            <!--<td>個数選択</td>-->
             <td><%= link_to "カートに入れる" %></td>
           </tr>
           <% end %>
@@ -24,6 +21,3 @@
       <!--<p>-->
         <%#= render 'index', items: @items %>
       <!--</p>-->
-    </div>
-  </div>
-</div>

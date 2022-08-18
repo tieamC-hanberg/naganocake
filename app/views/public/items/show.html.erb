@@ -1,5 +1,19 @@
-	<table class='table'>
-  	<tr>
-          <h2>あ</h2>
+<table class='table'>
+    <tr>
+        <td><%= image_tag @items.image, size:"100x100" %></td>
+        <td><%= @items.item_name %></td>
     </tr>
-  </table>
+    <tr>
+        <td><%= @items.item_description %></td>
+    </tr>
+    <tr>
+        <td>¥<%= @items.price %>(税込)</td>
+    </tr>
+    <!--ここから下はまだ-->
+    <tr>
+        <td>個数選択<%= @items.sale_status %></td>
+    </tr>
+    <tr>
+        <td><%= link_to '編集', edit_admin_item_path(@items.id), class: "btn btn-sm btn-success" %></td>
+    </tr>
+</table>
