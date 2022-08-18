@@ -1,10 +1,10 @@
     <h2>配送先編集</h2>
-    <%= form_with model:@delivery, url: public_deliveries_path, local:true do |f| %>
+    <%= form_with model:@delivery, url: public_deliveries_path(@delivery.id), local:true, method: :patch do |f| %>
       <div class="form-group">
         <%= f.label "郵便番号(ハイフンなし)" %>
         <%= f.text_field :postcode %>
       </div>
-    　<div class="form-group">
+      <div class="form-group">
         <%= f.label "住所" %>
         <%= f.file_field :address %>
       </div>
