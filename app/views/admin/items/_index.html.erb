@@ -11,11 +11,11 @@
   <tbody>
     <% items.each do |item| %>
     <tr>
-      <td></td>
-      <td><%= item_name %></td>
-      <td><%= price %></td>
-      <td></td>
-      <td></td>
+      <td><%= item.item_id %></td>
+      <td><%= item.item_name %></td>
+      <td><%= item.price %></td>
+      <td><%= item.genre_id %></td>
+      <td><%= item.sale_status %></td>
     </tr>
     <% end %>
   </tbody>
