@@ -1,0 +1,46 @@
+<h2>注文情報入力</h2>
+
+<div>
+  <h2>支払い方法</h2>
+    <%= form_with(model: order, local: true) do |f| %>
+      <%= f.radio_button :payment_method, "credit_card" %>
+      <%= f.label :order,"クレジットカード",{value: :male, style: "display: inline-block;"} %>
+    <% end %>
+    <%= form_with(model: order, local: true) do |f| %>
+      <%= f.radio_button :payment_method, "transfer" %>
+      <%= f.label :order,"銀行振込",{value: :male, style: "display: inline-block;"} %>
+    <% end %>
+</div>
+  <div>
+    <h2>お届け先</h2>
+        <%= form_with(model: order, local: true) do |f| %>
+          <%= f.radio_button :payment, :male %>
+          <%= f.label :order,"ご自身のご住所",{value: :male, style: "display: inline-block;"} %>
+            <%= link_to customer.postcode,customer %>
+        <% end %>
+        <%= form_with(model: order, local: true) do |f| %>
+          <%= f.radio_button :payment, :male %>
+          <%= f.label :order,"登録済み住所から選択",{value: :male, style: "display: inline-block;"} %>
+            <%= f.collection_select :delivery_id, Delivery.all, :id, :postcode, :address, :name %>
+        <% end %>
+        <%= form_with(model: order, local: true) do |f| %>
+          <%= f.radio_button :payment, :male %>
+          <%= f.label :order,"新しいお届け先",{value: :male, style: "display: inline-block;"} %>
+        <% end %>  
+          <%= form_with model: order, url: public_orders_path, local:true, method: :post do |f| %>
+            <div class="form-group">
+              <%= f.label "郵便番号(ハイフンなし)" %>
+              <%= f.text_field :postcode %>
+            </div>
+            <div class="form-group">
+              <%= f.label "住所" %>
+              <%= f.text_area :address %>
+            </div>
+            <div class="form-group">
+              <%= f.label "宛名" %>
+              <%= f.text_area :name %>
+            </div>
+         <% end %>
+  </div>
+        
+        
