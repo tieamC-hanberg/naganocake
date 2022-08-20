@@ -11,12 +11,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @cartitems.each do |item| %>
+    <% @cart_items.each do |cart_item| %>
     <tr>
-      <td><%= item.item_name %></td>
-      <td>¥<%= item.price %></td>
-      <td>¥<%= item.amount %></td>
-      <td><%= item.genre.name %></td>
+      <td><%= cart_item.item_name %></td>
+      <td>¥<%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.subtotal %></td>
+      <% @合計金額 +=  cart_item.subtotal %>
     </tr>
     <% end %>
   </tbody>

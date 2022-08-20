@@ -10,12 +10,10 @@
         <td>¥<%= @item.price %>(税込)</td>
     </tr>
     <tr>
-        <%= form_with model: @item, url: public_cart_items_path, method: :post, local:true do |f| %>
-            <td><%= f.hidden_field :item_name %></td>
-            <td><%= f.select :amount, ['1', '2', '3'], {include_blank: '個数選択'}, class: 'sample' %></td>
+        <%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local:true do |f| %>
+            <td><%= f.hidden_field :item_id, :value => @item.id %></td>
+            <td><%= f.select :amount, options_for_select((1..10).to_a), {include_blank: '個数選択'}, class: 'sample' %></td>
+            <td><%= f.submit 'カートに入れる', class: "btn btn-primary" %></td>
         <% end %>
-    </tr>
-    <tr>
-        <td><%= link_to 'カートに入れる', public_cart_items_path, class: "btn btn-sm btn-success" %></td>
     </tr>
 </table>
