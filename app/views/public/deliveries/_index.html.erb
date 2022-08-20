@@ -8,13 +8,16 @@
     </tr>
   </thead>
   <tbody>
-    <% @xxx.each do |xxx| %>
+    <% deliveries.each do |delivery| %>
       <tr>
-        <td><%=  %></td>　郵便番号表示
-        <td><%=  %></td>　住所表示
-        <td><%=  %></td>　宛名表示
-        <td><%= link_to "編集 ", xxx_path(@xxx.id), class:"btn btn-success" %></td>
-        <td><%= link_to "削除", xxx_path(@xxx), class:"btn btn-danger", method: :delete %><td>
+        <!--郵便番号表示-->
+        <td><%= delivery.postcode %></td>
+        <!--住所表示-->
+        <td><%= delivery.address %></td>
+        <!--宛名表示-->
+        <td><%= f.name %></td>
+        <td><%= link_to "編集", edit_deliverie_path(delivery.id), class:"btn btn-success" %></td>
+        <td><%#= link_to "削除", delivery_path(@delivery), class:"btn btn-danger", method: :delete %><td>
       </tr>
     <% end %>
   </tbody>

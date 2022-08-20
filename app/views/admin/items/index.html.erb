@@ -1,15 +1,7 @@
-<h2>商品一覧</h2>
-<table class='table'>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-  </tbody>
-</table>
+<div class='container px-5 px-sm-0'>
+  <div class='col-md-8 offset-md-1'>
+    <h2>商品一覧</h2>
+    <p><%= link_to '新規登録',new_admin_item_path %></p>
+    <p><%= render 'index', items: @items %> </p>
+  </div>
+</div>
