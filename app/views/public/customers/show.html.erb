@@ -1,1 +1,32 @@
-<h1>キムタク</h1>
+<h2 class="mt-4"><strong>マイページ</strong></h2><br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.full_name %></td>
+    </tr>
+    <tr>
+      <td>カナ</td>
+      <td><%= @customer.full_name_kana %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.postcode %></td>
+      
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @customer.phone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+  </thead>
+</table>
+<%= link_to "編集する", edit_public_customer_path, class:"btn btn-success btn-block" %><br>
+    

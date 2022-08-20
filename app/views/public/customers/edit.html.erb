@@ -1,1 +1,77 @@
-<h1>キムタク</h1>
+<div class='container'>
+  <div class=“row”>
+    <div class='mx-auto col-lg-6'>
+<h2 class="mt-4"><strong>会員情報編集</strong></h2><br>
+<%= form_with model: @customer, url: public_customer_path, method: :patch do |f| %>
+<table class="table table-bordered">
+  <thead>
+  <div class="mb-3">
+    <div class="row">
+      <div class="col">
+        <tr>
+          <th><%= f.label :first_name, "氏名" %></th>
+          <td><%= f.text_field :first_name, class:"form-control", autofocus: true, autocomplete: "family-name" %></td>
+          <td><%= f.text_field :last_name, class:"form-control", autofocus: true, autocomplete: "given-name" %></td>
+        </tr>
+      </div>
+  </div>
+</div>
+
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <tr>
+        <th><%= f.label :first_name_kana, "フリガナ" %></th>
+        <th><%= f.text_field :first_name_kana, class:"form-control" %></th>
+        <th><%= f.text_field :last_name_kana, class:"form-control" %></th>
+      </tr>
+    </div>
+  </div>
+</div>
+
+<div class="mb-3">
+  <tr>
+    <th><%= f.label :postcode, "郵便番号（ハイフンなし）" %></th>
+    <th><%= f.text_field :postcode, class:"form-control", autocomplete: "postal-code" %><th>
+  <tr>
+</div>
+
+<div class="mb-3">
+  <tr>
+    <th><%= f.label :address, "住所" %></th>
+    <th><%= f.text_field :address, class:"form-control" %></th>
+  </tr>
+</div>
+
+<div class="mb-3">
+  <tr>
+    <th><%= f.label :phone_number, "電話番号（ハイフンなし）" %></th>
+    <th><%= f.text_field :phone_number, class:"form-control" %></th>
+  </tr>
+</div>
+
+<div class="mb-3">
+  <tr>
+    <th><%= f.label :email, "メールアドレス" %></th>
+    <th><%= f.email_field :email, class:"form-control", autocomplete: "email" %></th>
+  </tr>
+</div>
+</thead>
+</table>
+
+<div class="mb-3">
+  <%= f.submit "編集内容を保存", class:"btn btn-success btn-block" %>
+</div>
+
+<div class="mb-3">
+  <%#= link_to "退会する", public_unsubscribe_path, class:"btn btn-outline-danger btn-block" %>
+</div>
+<div class="mb-3">
+  <%= link_to "退会する", public_unsubscribe_path, class:"btn btn-outline-danger btn-block" %>
+</div>
+
+
+<% end %>
+</div>
+</div>
+</div>
