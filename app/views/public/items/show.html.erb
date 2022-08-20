@@ -1,19 +1,21 @@
 <table class='table'>
     <tr>
-        <td><%= image_tag @items.image, size:"100x100" %></td>
-        <td><%= @items.item_name %></td>
+        <td><%= image_tag @item.image, size:"100x100" %></td>
+        <td><%= @item.item_name %></td>
     </tr>
     <tr>
-        <td><%= @items.item_description %></td>
+        <td><%= @item.item_description %></td>
     </tr>
     <tr>
-        <td>¥<%= @items.price %>(税込)</td>
-    </tr>
-    <!--ここから下はまだ-->
-    <tr>
-        <td>個数選択<%= @items.sale_status %></td>
+        <td>¥<%= @item.price %>(税込)</td>
     </tr>
     <tr>
-        <td><%= link_to '編集', edit_admin_item_path(@items.id), class: "btn btn-sm btn-success" %></td>
+        <%= form_with model: @item, url: public_cart_items_path, method: :post, local:true do |f| %>
+            <td><%= f.hidden_field :item_name %></td>
+            <td><%= f.select :amount, ['1', '2', '3'], {include_blank: '個数選択'}, class: 'sample' %></td>
+        <% end %>
+    </tr>
+    <tr>
+        <td><%= link_to 'カートに入れる', public_cart_items_path, class: "btn btn-sm btn-success" %></td>
     </tr>
 </table>
