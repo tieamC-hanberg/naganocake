@@ -5,19 +5,33 @@
         </thead>
         <tbody>
           <% @items.each do |item| %>
-          <tr>
-            <td><%#= link_to(item.id) do %>
-            <%#= image_tag item.get_profile_image, size:'50x50' %>
-            <%# end %>
-            </td>
-            <td><%= item.item_name %></td>
-            <td><%= item.item_description %></td>
-            <td><%= item.item_price %></td>
-            <td><%= link_to "カートに入れる" %></td>
-          </tr>
+            <% if item.sale_status == true %>
+            <tr>
+              <td><%= link_to public_item_path(item.id) do %>
+              <%= image_tag item.image, size:'50x50' %><br>
+              <%= item.item_name %>
+              <% end %>
+              </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+              <td>¥<%= item.price %></td>
+            </tr>
+            <% else %>
+             <tr>
+              <td><%= image_tag item.image, size:'50x50' %><br>
+                  <%= item.item_name %>
+              </td>
+             </tr>
+             <tr>
+              <td><%= "売り切れ" %></td>
+            </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
+      <%= paginate @items %>
       <!--<p>-->
         <%#= render 'index', items: @items %>
       <!--</p>-->
