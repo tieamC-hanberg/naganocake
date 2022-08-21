@@ -1,0 +1,31 @@
+<h1>sample</h1>
+<table class= "table table-hover table-inveerse">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th> ステータス</th>
+    </tr>
+    <tbody>
+      <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td>
+          <%= link_to  admin_customer_path(customer.id) do %>
+          <%= customer.full_name %>
+          <% end %>
+        </td>
+        <td><%= customer.email %></td>
+      <td><% if customer.is_deleted == true %>
+      <span class="text-secondary" ><strong>退会</strong></span>
+      <% else %>
+      <span class="text-success" ><strong>有効</strong></span>
+      <% end %>
+      </td>
+      </tr>
+      
+      <% end %>
+      </tbody>
+  </thead>
+</table>
