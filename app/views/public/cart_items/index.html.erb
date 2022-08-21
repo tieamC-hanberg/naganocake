@@ -1,5 +1,5 @@
 <h2>ショッピングカート</h2>
-<p><%= link_to "カートを空にする", public_cart_item_path(@cart_items), method: :delete, class: "btn btn-sm btn-danger"%></p>
+<p><%= link_to "カートを空にする",  public_cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger"%></p>
 <table class="table">
   <thead>
     <tr>
@@ -15,10 +15,11 @@
     <tr>
       <td><%= cart_item.item.item_name %></td>
       <td><%= cart_item.item.price %></td>
-      <td><%= cart_item.amount %></td>
-      <!--<%#= form_with model: @cart_item, url: public_cart_item_path, method: :patch, local:true do |f| %>-->
-      <!-- <td><%#= f.select :amount, options_for_select(@cart_item, {selected: cart_item.amount.to_i} ) class: 'sample'%></td>-->
-      <!--<%# end %>-->
+      <td><%= form_with model: @cart_item, url: public_cart_item_path(cart_item), method: :patch, local:true do |f| %>
+       <%= f.select :amount, options_for_select((1..20).to_a,{selected: cart_item.amount.to_i}), class: 'sample'%>
+       <%= f.submit '変更', class: "btn btn-primary" %>
+      <% end %>
+      </td>
       <td><%= cart_item.subtotal %></td>
       <% @total +=  cart_item.subtotal %>
       <td><%= link_to "削除", public_cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger"%></td>

@@ -24,7 +24,7 @@ class Public::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.update
+    @cart_item.update(amount: params[:cart_item][:amount].to_i)
     redirect_to public_cart_items_path
 
   end
@@ -37,7 +37,7 @@ class Public::CartItemsController < ApplicationController
 
   def destroy_all
     @cart_items = CartItem.all
-    cart_items.destroy_all
+    @cart_items.destroy_all
     redirect_to public_cart_items_path
   end
 
