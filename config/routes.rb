@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
   root to: 'public/homes#top'
-  
+
   namespace :public do
   #scope module: :customer do
   get "homes/about"=>"homes#about"
@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :customers, only: [ :show, :edit, :update]
   resources :items, only: [:index, :show]
   resources :deliveries, only: [:index, :create, :edit]
-  resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  resources :cart_items, only: [:index, :update, :destroy, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :admin do
