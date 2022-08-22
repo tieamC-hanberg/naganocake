@@ -8,4 +8,5 @@ class Order < ApplicationRecord
   def address_display
   '〒' + postcode + ' ' + address + ' ' + name
   end
+  
 end
