@@ -12,11 +12,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @order.postcode = current_customer.postcode
     @order.address = current_customer.address
-    #@order.name = current_customer.first_name + current_customer.last_name
-    #@delivery = Delivery.find(params[:order][:delivery_id])
-    #@delivery.postcode = current_customer.postcode
-    #@delivery.address = current_customer.address
-    #@delivery.name = current_customer.last_name + current_customer.first_name
+    @order.name = current_customer.first_name + current_customer.last_name
   end
 
   def create
@@ -28,7 +24,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :delivery_id, :postcode, :address, :name)
+    params.require(:order).permit(:payment_method, :delivery_id, :postcode, :address, :name, :first_name, :last_name)
   end
 
 end
