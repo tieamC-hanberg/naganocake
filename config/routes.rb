@@ -6,16 +6,16 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
- 
+
   # ,skip: [:passwords], controllers: {
   # registrations: "customer/registrations",
   # sessions: 'customer/sessions'
   # }
-  
+
   root to: 'public/homes#top'
   # resources :public/items
   #root to: 'admin/homes#top'
-  
+
   namespace :public do
   #scope module: :customer do
   get "homes/about"=>"homes#about"
@@ -23,8 +23,11 @@ Rails.application.routes.draw do
   patch "/withdrawal"=>"customers#withdrawal"
   resources :customers, only: [ :show, :edit, :update]
   resources :items, only: [:index, :show]
-  resources :deliveries, only: [:index, :create, :edit]
+  resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
   resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+  post "orders/confirm" => "orders#comfilm"
+  get "orders/complete" => "orders#complete"
+  resources :orders, only:[:new, :create, :index, :show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :admin do

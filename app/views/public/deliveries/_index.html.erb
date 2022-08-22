@@ -15,9 +15,9 @@
         <!--住所表示-->
         <td><%= delivery.address %></td>
         <!--宛名表示-->
-        <td><%= f.name %></td>
-        <td><%= link_to "編集", edit_deliverie_path(delivery.id), class:"btn btn-success" %></td>
-        <td><%#= link_to "削除", delivery_path(@delivery), class:"btn btn-danger", method: :delete %><td>
+        <td><%= delivery.name %></td>
+        <td><%= link_to "編集", edit_public_delivery_path(delivery.id), class:"btn btn-success" %></td>
+        <td><%= link_to "削除", public_delivery_path(delivery.id), class:"btn btn-danger", method: :delete %><td>
       </tr>
     <% end %>
   </tbody>
