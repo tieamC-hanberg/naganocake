@@ -7,7 +7,7 @@
         <td><%= @item.item_description %></td>
     </tr>
     <tr>
-        <td>¥<%= @item.price %>(税込)</td>
+        <td>¥<%= @item.with_tax_price %>(税込)</td>
     </tr>
 </table>
  <td><%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local:true do |f| %>
