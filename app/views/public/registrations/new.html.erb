@@ -36,7 +36,10 @@
       <tr>
           <th><%= f.label :"住所" %></th>
           <td></td>
-          <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+          <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+          <%#= f.label :prefecture_name, '都道府県' %>
+          <%#= f.collection_select :address, JpPrefecture::Prefecture.all, :name, :name %>
+          </td>
       </tr>
       <tr>
            <th><%= f.label :"電話番号" %></th>
