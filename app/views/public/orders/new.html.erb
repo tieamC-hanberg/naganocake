@@ -14,7 +14,7 @@
       <%= f.label :delivery_id, "ご自身の住所" %>
         <%= @order.postcode %>
         <%= @order.address %>
-        <%#= @order.name %>
+        <%= @order.name %>
 
 
       <%= f.radio_button :delivery_id, "delivery_address" %>
