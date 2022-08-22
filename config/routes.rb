@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   #root to: 'public/homes#top'
 
-
   namespace :public do
   #scope module: :customer do
   get "homes/about"=>"homes#about"
