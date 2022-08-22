@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # resources :public/items
   #root to: 'admin/homes#top'
 
-  root to: 'public/homes#top'
+  # root to: 'public/homes#top'
 
 
   namespace :public do
