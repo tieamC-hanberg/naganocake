@@ -2,13 +2,13 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
-  def comfilm
+  def confirm
     @oder = Order.new(order_params)
     @delivery = Delivery.find(params[:order][:delivery_id])
     @order.postcode = current_customer.postcode
     @order.address = current_customer.address
     @order.name = current_customer.first_name + current_customer.last_name
-    @cart_items = Cart_item.find(params[:cart_item_id])
+    @cart_items = CartItem.all
     @total = 0
   end
 
@@ -31,7 +31,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :delivery_id, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
+    params.require(:order).permit(:payment_method, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
   end
 
   def cart_item_params
