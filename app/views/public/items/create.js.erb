@@ -1,0 +1,2 @@
+$('#favorite_buttons_<%= @cart_item.id %>').html("<%= j(render "public/items/show", cart_item: @cart_item, item: @item) %>");
+$('#favorite_buttons_<%= @item.id %>').html("<%= j(render "public/items/show" item: @item) %>");
