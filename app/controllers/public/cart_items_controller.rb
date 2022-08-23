@@ -21,6 +21,8 @@ class Public::CartItemsController < ApplicationController
         redirect_to public_cart_items_path
     else
        redirect_to public_items_path
+    
+    
     end
   end
 

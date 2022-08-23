@@ -10,9 +10,5 @@
         <td>¥<%= @item.with_tax_price %>(税込)</td>
     </tr>
 </table>
- <td><%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local:true do |f| %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.select :amount, options_for_select((1..10).to_a), {include_blank: '個数選択'}, class: 'sample' %>
-        <%= f.submit 'カートに入れる', class: "btn btn-primary" %>
- <% end %>
- </td>
+<%= render 'public/items/cart_submit', cart_item: @cart_item,item: @item %>
+ 
