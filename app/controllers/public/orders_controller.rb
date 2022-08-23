@@ -8,7 +8,8 @@ class Public::OrdersController < ApplicationController
     @order.postcode = current_customer.postcode
     @order.address = current_customer.address
     @order.name = current_customer.first_name + current_customer.last_name
-    @cart_items = Cart_item.find(params[:item_id])
+    @cart_items = Cart_item.find(params[:cart_item_id])
+    @total = 0
   end
 
   def index
@@ -18,7 +19,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @order.postcode = current_customer.postcode
     @order.address = current_customer.address
-    @order.name = current_customer.first_name + current_customer.last_name
+    @order.name = current_customer.last_name + current_customer.first_name
   end
 
   def create
@@ -31,6 +32,10 @@ class Public::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:payment_method, :delivery_id, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:cart_item_id, :amount)
   end
 
 end

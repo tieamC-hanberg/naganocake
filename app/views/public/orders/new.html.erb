@@ -1,7 +1,7 @@
 <h2>注文情報入力</h2>
 
 <div>
-  <%= form_with model: @order, url: public_orders_path, method: :post, local:true do |f| %>
+  <%= form_with model: @order, url: public_orders_confirm_path, method: :post, local:true do |f| %>
   <h2>支払い方法</h2>
       <%= f.radio_button :payment_method, "credit_card" %>
       <%= f.label :payment_method,"クレジットカード" %>
@@ -36,5 +36,5 @@
           <%= f.text_area :name %>
          </div>
 
-         <td><%= f.submit '確認画面へ進む', url: public_orders_confirm_path, method: :post, class: "btn btn-primary" %></td>
+         <td><%= f.submit '確認画面へ進む', class: "btn btn-primary" %></td>
       <% end %>
