@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    
     @total = 0
     @order = Order.new(order_params)
     #@delivery = Delivery.find(params[:order][:delivery_id][:payment_method])
