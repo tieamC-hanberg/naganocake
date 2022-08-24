@@ -1,0 +1,24 @@
+<h2>注文履歴詳細</h2>
+<table>
+  <thead>
+    <tr>
+      <td>購入者</td>
+    </tr>
+    <tr>
+      <td>注文日 <%= @order.created_at %></td>
+    </tr>
+    <tr>
+      <td>配送先 <%= @order.address %></td>
+    </tr>
+    <tr>
+      <td>支払方法 <%= @order.payment_i18n %></td>
+    </tr>
+  </thead>
+
+</table>
+          <td><%= form_with model: @order, url: admin_order_path, method: :patch, local:true do |f| %>
+                <%= f.label "注文ステータス" %>
+                <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: false} %>
+                <%= f.submit "更新" , class: "btn btn-outline-success" %>
+          　　　<% end %>
+          </td>
