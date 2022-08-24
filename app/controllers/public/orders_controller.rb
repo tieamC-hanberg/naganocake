@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
   def complete
+  
   end
 
   def comfilm
@@ -23,6 +24,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+ 
   end
 
   def show
