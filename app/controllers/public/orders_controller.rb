@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
   
   end
 
-  def confirm
+ def confirm
     
     @total = 0
     @order = Order.new(order_params)
@@ -24,6 +24,7 @@ class Public::OrdersController < ApplicationController
       @order.name = Order.new(order_params).name
     end
   end
+   
 
   def index
   end
@@ -45,7 +46,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
+    params.require(:order).permit(:payment_method, :delivery_id, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
   end
 
   def cart_item_params
