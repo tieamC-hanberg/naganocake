@@ -10,19 +10,19 @@
 </div>
   <div>
     <h2>お届け先</h2>
-      <%= f.radio_button :delivery_id, 0 %>
-      <%= f.label :delivery_id, "ご自身の住所" %>
+      <%= f.radio_button :delivery_number, 1 %>
+      <%= f.label :delivery_number, "ご自身の住所" %>
         <%= @order.postcode %>
         <%= @order.address %>
         <%= @order.name %>
 
 
-      <%= f.radio_button :delivery_id, 1 %>
-      <%= f.label :delivery_id, "登録済み住所から選択" %>
+      <%= f.radio_button :delivery_number, 2 %>
+      <%= f.label :delivery_number, "登録済み住所から選択" %>
       <%= f.select :delivery_id, options_from_collection_for_select(current_customer.deliveries, :id, :address_display) %>
 
-      <%= f.radio_button :delivery_id, 2 %>
-      <%= f.label :delivery_id, "新しい住所を登録" %>
+      <%= f.radio_button :delivery_number, 3 %>
+      <%= f.label :delivery_number, "新しい住所を登録" %>
          <div class="form-group">
            <%= f.label "郵便番号(ハイフンなし)" %>
            <%= f.text_field :postcode %>
@@ -36,5 +36,6 @@
           <%= f.text_area :name %>
          </div>
 
-         <td><%= f.submit '確認画面へ進む', class: "btn btn-primary" %></td>
+         <div><%= f.submit '確認画面へ進む', class: "btn btn-primary" %></div>
+  </div>
   <% end %>
