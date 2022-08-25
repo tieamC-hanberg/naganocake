@@ -23,7 +23,7 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-  def index
+def index
     @order = current_customer.orders.all
     #@order = Order.find(params[:id])
   end
@@ -58,7 +58,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:order_id, :payment_method, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id, :freight, :total_payment)
+    params.require(:order).permit(:payment_method, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id, :freight, :total_payment, :order_status)
   end
 
   def cart_item_params
@@ -69,3 +69,5 @@ class Public::OrdersController < ApplicationController
     params.require(:OrderDetail).permit(:item_id, :order_id, :tax_price, :amount )
   end
 end
+
+
