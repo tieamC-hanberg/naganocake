@@ -2,7 +2,7 @@
 <table>
   <thead>
     <tr>
-      <td>購入者</td>
+      <td>購入者<%= @order.name %></td>
     </tr>
     <tr>
       <td>注文日 <%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -32,27 +32,30 @@
         <td>製作ステータス</td>
       </tr>
     </thead>
-    <!--<tbody>-->
-      <%# @order_dateil.each do |order_dateil| %>
-    <!--  <tr>-->
-    <!--    <td></td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <td></td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <td></td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <td></td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <td><%= form_with model: @order_dateil, url: admin_order_path, method: :patch, local:true do |f| %>
-                <%= f.label "製作ステータス" %>
-                <%#= f.select :make_status, OrderDateil.make_statuses_i18n.invert, {prompt: false} %>
+    <tbody>
+      <% @total = 0 %>
+      <% @order_details.each do |order_detail|%>
+      <tr>
+        <td><%= order_detail.item.item_name %></td>
+        <td><%= order_detail.tax_price %></td>
+        <td><%= order_detail.amount %></td>
+        <td>
+        <%= order_detail.tax_price * order_detail.amount %>
+        <% @total += order_detail.tax_price * order_detail.amount %>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+            <td><%= form_with model: @order_detail, url: admin_path(@order_details), method: :patch, local:true do |f| %>
+                <%= f.select :make_status, OrderDetail.make_statuses_i18n.invert, {prompt: false} %>
                 <%= f.submit "更新" , class: "btn btn-outline-success" %>
-          　　　<% end %></td>-->
-    <!--  </tr>-->
-      <%# end %>
-    <!--</tbody>-->
+          　　  　<% end %>
+          　</td>
+      </tr>
+    </tbody>
+      <tr>
+        <th>商品合計</th><td><%= @total %></td>
+        <th>送料</th><td><%= @order.freight %></td>
+        <th>請求額合計</th><td><%= @total + @order.freight %></td>
+      </tr>
   </table>
