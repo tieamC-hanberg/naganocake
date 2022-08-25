@@ -31,7 +31,13 @@
      <%= @order.name %><br>
     </div>
     <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
-　    <%= f.submit "注文を確定する", class: "btn btn-sm btn-danger" %>
+     <%= f.hidden_field :address, :value => @order.address %>
+     <%= f.hidden_field :postcode, :value => @order.postcode %>
+      <%= f.hidden_field :freight, :value => 800 %>
+       <%= f.hidden_field :total_payment, :value => @total %>
+        <%= f.hidden_field :payment, :value => @order.payment %>
+        <%= f.hidden_field :name, :value => @order.name %>
+     <%= f.submit "注文を確定する", class: "btn btn-sm btn-danger" %>
     <% end %>
   </tbody>
 </table>
