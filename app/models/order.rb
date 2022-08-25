@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :customer
-  has_many :order_detail
+  has_many :order_details
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
@@ -10,8 +10,4 @@ class Order < ApplicationRecord
   '〒' + postcode + ' ' + address + ' ' + name
   end
 
-
-  def subtotal
-    amount*item.with_tax_price.to_i
-  end
 end
