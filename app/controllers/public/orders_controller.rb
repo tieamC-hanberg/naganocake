@@ -46,7 +46,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :delivery_id, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
+    params.require(:order).permit(:payment_method, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id)
   end
 
   def cart_item_params
@@ -56,11 +56,3 @@ class Public::OrdersController < ApplicationController
 end
 
 
-@order = Order.new(delivery_params)
-@order.customer_id=current_customer.id
-@adress=(params[:order][:payment_method])
-if @adress == "0"
-@order.postcode = current_customer.postcode
-@order.address = current_customer.address
-@order.name = current_customer.first_name + current_customer.last_name
-elsif @adress == "1"
