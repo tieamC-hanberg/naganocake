@@ -22,10 +22,10 @@
             <td>
               <% order.order_details.each do |order_detail| %>
                 <p><%= order_detail.item.item_name %></p>
-              <% end%>
+              <% end %>
             </td>
             <!--ステータス-->
-            <td><%#= order_detail.order.order_status_i18n %></td>
+            <td><%= order.order_status_i18n %></td>
             <!--注文詳細-->
             <td><%= link_to "表示する", public_order_path(order.id) %></td>
           </tr>
