@@ -23,7 +23,8 @@ class Public::OrdersController < ApplicationController
       @order.name = Order.new(order_params).name
     end
   end
-
+  
+   
 
   def index
   end
