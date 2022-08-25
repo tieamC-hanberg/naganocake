@@ -9,6 +9,7 @@
     </tr>
   </thead>
   <tbody>
+    <% @total = 0 %>
     <% @orders.each do |order| %>
       <tr>
         <td><%= link_to admin_order_path(order.id) do %>
@@ -16,7 +17,7 @@
           　<% end %>
         </td>
         <td><%= order.name %></td>
-        <td>¥<%= order.total_payment %></td>
+        <td><%= order.order_details.sum(:amount) %></td>
         <td><%= order.order_status_i18n %></td>
       </tr>
     <% end %>
