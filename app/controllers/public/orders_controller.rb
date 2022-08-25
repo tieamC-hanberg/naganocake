@@ -1,6 +1,5 @@
 class Public::OrdersController < ApplicationController
   def complete
-
   end
 
   def confirm
@@ -23,10 +22,10 @@ class Public::OrdersController < ApplicationController
       @order.name = Order.new(order_params).name
     end
   end
-  
-   
 
-  def index
+def index
+    @order = current_customer.orders.all
+    #@order = Order.find(params[:id])
   end
 
   def new
@@ -40,12 +39,20 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.save
     @cart_items = current_customer.cart_items.all
+      @cart_items.each do |cart_item|
+        @order_detail = @order.order_details.new
+        @order_detail.item_id = cart_item.item.id
+        @order_detail.tax_price = cart_item.item.with_tax_price
+        @order_detail.amount = cart_item.amount
+        @order_detail.save
+      end
     @cart_items.destroy_all
-
     redirect_to public_orders_complete_path
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
@@ -58,6 +65,9 @@ class Public::OrdersController < ApplicationController
     params.require(:cart_item).permit(:cart_item_id, :amount)
   end
 
+  def order_detail_params
+    params.require(:OrderDetail).permit(:item_id, :order_id, :tax_price, :amount )
+  end
 end
 
 
