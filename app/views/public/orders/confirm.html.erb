@@ -1,37 +1,63 @@
-
-<h2>注文情報確認</h2>
- <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td><%= cart_item.item.item_name %></td>
-        <td><%= cart_item.item.with_tax_price %></td>
-        <td><%= cart_item.amount %></td>
-        <td><%= cart_item.subtotal %></td>
-      </tr>
-      <tr><th>送料</th><td>800</td></tr>
-      <tr><th>商品合計</th><td><% @total += cart_item.subtotal %></td></tr>
-      <tr><th>請求金額</th><td><% @total += cart_item.subtotal + 800 %></td></tr>
-    <% end %>
-    <div>
-      支払方法
-       <p><%= @order.payment_i18n %></p>
-    </div>
-    <div>
-      お届け先
-     <%= @order.postcode %><br>
-     <%= @order.address %><br>
-     <%= @order.name %><br>
-    </div>
-  </tbody>
-</table>
+<div class="container">
+  <div style="d-flex align-items-center height:100px;">
+    <h2>
+     注文情報確認
+    </h2>
+  </div>
+</div>
+  <div class="container">
+    <div class = "row">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center justify-content-center">
+          <table class="table" border="2" style="font-size: 13pt; line-height: 100%;" >
+             <thead bgcolor="#f5f5f5" >
+                <tr>
+                  <th>商品名</th>
+                  <th>単価(税込)</th>
+                  <th>数量</th>
+                  <th>小計</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <% @total = 0 %>
+                    <% @cart_items.each do |cart_item| %>
+                      <tr>
+                        <td><%= cart_item.item.item_name %></td>
+                        <td><%= cart_item.item.with_tax_price %>円</td>
+                        <td><%= cart_item.amount %></td>
+                        <td><%= cart_item.subtotal %>円</td>
+                          <% cart_item.item.with_tax_price * cart_item.amount %>
+                           <% @total += cart_item.item.with_tax_price * cart_item.amount %>
+                      </tr>
+                    <% end %>
+                </tbody>
+          </table>
+            <div class="col-lg-4">
+              <table class="table" border="2" style="font-size: 13pt; line-height: 100%;">
+                  <tr><th bgcolor="#f5f5f5">送料</th><td>800円</td></tr>
+                  <tr><th bgcolor="#f5f5f5">商品合計</th><td><%= @total %>円</td></tr>
+                  <tr><th bgcolor="#f5f5f5">請求金額</th><td><%= @total + 800 %>円</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="container">
+         <div class = "row">
+           <div class="col-lg-12">
+              <strong>支払方法</strong>&emsp;&emsp;<%= @order.payment_i18n %>
+            </div>
+         </div>
+        </div>
+          <div class="container">
+            <div class = "row">
+              <div class="col-lg-12">
+                <strong>お届け先</strong>
+                 &emsp;&emsp;〒<%= @order.postcode %><%= @order.address %><br>
+                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<%= @order.name %>
+              </div>
+            </div>
+          </div>
     <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
      <%= f.hidden_field :address, :value => @order.address %>
      <%= f.hidden_field :postcode, :value => @order.postcode %>
@@ -39,7 +65,7 @@
      <%= f.hidden_field :total_payment, :value => @total %>
      <%= f.hidden_field :payment, :value => @order.payment %>
      <%= f.hidden_field :name, :value => @order.name %>
-      <%= f.submit "注文を確定する", class: "btn btn-sm btn-danger" %>
+      <%= f.submit "注文を確定する", class: "btn btn-sm btn-primary" %>
     <% end %>
 
 

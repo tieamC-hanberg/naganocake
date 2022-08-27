@@ -1,34 +1,44 @@
-<h2>注文履歴一覧</h2>
- <table class='table'>
-  <thead>
-      <tr>
-        <th>注文日</th>
-        <th>配送先</th>
-        <th>注文商品</th>
-        <th>ステータス</th>
-        <th>注文詳細</th>
-      </tr>
-    </thead>
-      <tbody>
-        <% @order.each do |order| %>
-          <tr>
-            <!--注文日-->
-            <td><%= order.created_at %></td>
-            <!--配送先-->
-            <td><%= order.postcode %></br>
-                <%= order.address %></br>
-                <%= order.name %></td>
-            <!--注文商品-->
-            <td>
-              <% order.order_details.each do |order_detail| %>
-                <p><%= order_detail.item.item_name %></p>
+<div class="container">
+  <div style="d-flex align-items-center height:100px;">
+    <h2>
+      注文履歴一覧
+    </h2>
+  </div>
+</div>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+        <table class="table"  border="2" style="font-size: 13pt; line-height: 100%;" >
+          <thead bgcolor="#f5f5f5" >
+            <tr>
+              <th>注文日</th>
+              <th>配送先</th>
+              <th>注文商品</th>
+              <th>ステータス</th>
+              <th>注文詳細</th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @order.each do |order| %>
+                <tr>
+                  <!--注文日-->
+                  <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+                  <!--配送先-->
+                  <td><%= order.postcode %></br>
+                      <%= order.address %></br>
+                      <%= order.name %></td>
+                  <!--注文商品-->
+                  <td>
+                    <% order.order_details.each do |order_detail| %>
+                      <p><%= order_detail.item.item_name %></p>
+                    <% end %>
+                  </td>
+                  <!--ステータス-->
+                  <td><%= order.order_status_i18n %></td>
+                  <!--注文詳細-->
+                  <td><%= link_to "表示する", public_order_path(order.id), class: 'btn btn-primary' %></td>
+                </tr>
               <% end %>
-            </td>
-            <!--ステータス-->
-            <td><%= order.order_status_i18n %></td>
-            <!--注文詳細-->
-            <td><%= link_to "表示する", public_order_path(order.id) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-</table>
+            </tbody>
+      </table>
+    </div>
+  </div>

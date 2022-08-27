@@ -1,41 +1,61 @@
-<h2>注文情報入力</h2>
-
-<div>
-  <%= form_with model: @order, url: public_orders_confirm_path, method: :post, local:true do |f| %>
-  <h2>支払い方法</h2>
-      <%= f.radio_button :payment, "credit_card" %>
-      <%= f.label :payment,"クレジットカード" %>
-      <%= f.radio_button :payment, "transfer" %>
-      <%= f.label :payment,"銀行振込" %>
-</div>
-  <div>
-    <h2>お届け先</h2>
-      <%= f.radio_button :delivery_number, 1 %>
-      <%= f.label :delivery_number, "ご自身の住所" %>
-        <%= @order.postcode %>
-        <%= @order.address %>
-        <%= @order.name %>
-
-
-      <%= f.radio_button :delivery_number, 2 %>
-      <%= f.label :delivery_number, "登録済み住所から選択" %>
-      <%= f.select :delivery_id, options_from_collection_for_select(current_customer.deliveries, :id, :address_display) %>
-
-      <%= f.radio_button :delivery_number, 3 %>
-      <%= f.label :delivery_number, "新しい住所を登録" %>
-         <div class="form-group">
-           <%= f.label "郵便番号(ハイフンなし)" %>
-           <%= f.text_field :postcode %>
-         </div>
-         <div class="form-group">
-           <%= f.label "住所" %>
-           <%= f.text_area :address %>
-         </div>
-         <div class="form-group">
-          <%= f.label "宛名" %>
-          <%= f.text_area :name %>
-         </div>
-
-         <div><%= f.submit '確認画面へ進む', class: "btn btn-primary" %></div>
+<div class="container">
+  <div style="d-flex align-items-center height:100px;">
+    <h2>
+     注文情報入力
+    </h2>
   </div>
-  <% end %>
+    <div class="container">
+      <div class = "row">
+        <div class="col-lg-12">
+          <%= form_with model: @order, url: public_orders_confirm_path, method: :post, local:true do |f| %>
+            <strong>支払い方法</strong>
+                <div>
+                  &emsp;&emsp;<%= f.radio_button :payment, "credit_card" %>
+                  <%= f.label :payment,"クレジットカード" %>
+                <div>
+                  &emsp;&emsp;<%= f.radio_button :payment, "transfer" %>
+                  <%= f.label :payment,"銀行振込" %>
+                </div>
+                  <div class = "row">
+                    <div class="col-lg-12">
+                      <strong>お届け先</strong></br>
+                        <%= f.radio_button :delivery_number, 1 %>
+                        <%= f.label :delivery_number, "ご自身の住所" %></br>
+                        〒<%= @order.postcode %><%= @order.address %></br>
+                        <p><%= @order.name %></p>
+                    </div>
+                  </div>
+                    <div class = "row">
+                      <div class="col-lg-12">
+                        <%= f.radio_button :delivery_number, 2 %>
+                        <%= f.label :delivery_number, "登録済み住所から選択" %>
+                        &emsp;&emsp;<%= f.select :delivery_id, options_from_collection_for_select(current_customer.deliveries, :id, :address_display) %>
+                      </div>
+                    </div>
+                      <div class = "row">
+                        <div class="col-lg-12">
+                          <%= f.radio_button :delivery_number, 3 %>
+                          <%= f.label :delivery_number, "新しい住所を登録" %>
+                             <div class="form-group">
+                               <%= f.label "郵便番号（ハイフンなし）" %>
+                               &emsp;<%= f.text_field :postcode, size: "30×5" %>
+                             </div>
+                             <div class="form-group">
+                               <%= f.label "住所" %>
+                               &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<%= f.text_area :address, size: "80×5" %>
+                             </div>
+                             <div class="form-group">
+                              <%= f.label "宛名" %>
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<%= f.text_area :name, size: "30×5" %>
+                             </div>
+                        </div>
+                      </div>
+                       <div>
+                         <div style= "text-align:center;">
+                           <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+                         </div>
+                       </div>
+
+          <% end %>
+    </div>
+
