@@ -10,8 +10,9 @@
       <div class="col">
         <tr>
           <th><%= f.label :first_name, "氏名" %></th>
-          <td><%= f.text_field :first_name, class:"form-control", autofocus: true, autocomplete: "family-name" %></td>
           <td><%= f.text_field :last_name, class:"form-control", autofocus: true, autocomplete: "given-name" %></td>
+          <td><%= f.text_field :first_name, class:"form-control", autofocus: true, autocomplete: "family-name" %></td>
+          
         </tr>
       </div>
   </div>
@@ -22,8 +23,9 @@
     <div class="col">
       <tr>
         <th><%= f.label :first_name_kana, "フリガナ" %></th>
-        <th><%= f.text_field :first_name_kana, class:"form-control" %></th>
         <th><%= f.text_field :last_name_kana, class:"form-control" %></th>
+        <th><%= f.text_field :first_name_kana, class:"form-control" %></th>
+        
       </tr>
     </div>
   </div>
