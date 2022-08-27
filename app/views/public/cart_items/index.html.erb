@@ -23,13 +23,13 @@
           <tr>
             <td><%= image_tag cart_item.item.image, size:"50x40" %>
                 <%= cart_item.item.item_name %></td>
-            <td align="left" valign="middle"><%= cart_item.item.with_tax_price %></td>
+            <td align="left" valign="middle"><%= cart_item.item.with_tax_price %>円</td>
             <td><%= form_with model: @cart_item, url: public_cart_item_path(cart_item), method: :patch, local:true do |f| %>
              <%= f.select :amount, options_for_select((1..20).to_a,{selected: cart_item.amount.to_i}), class: 'sample'%>
              <%= f.submit '変更', class: "btn btn-success" %>
             <% end %>
             </td>
-            <td align="left" valign="middle"><%= cart_item.subtotal %></td>
+            <td align="left" valign="middle"><%= cart_item.subtotal %>円</td>
             <% @total +=  cart_item.subtotal %>
             <td><%= link_to "削除", public_cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger"%></td>
           </tr>
@@ -45,7 +45,7 @@
           <table class="table text-left" border="2">
             <thead>
               <td bgcolor="#f5f5f5">合計金額</td>
-              <td><%= @total %></td>
+              <td><%= @total %>円</td>
             </thead>
            </table>
         </div>
