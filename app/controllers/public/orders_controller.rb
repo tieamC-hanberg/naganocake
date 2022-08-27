@@ -5,8 +5,6 @@ class Public::OrdersController < ApplicationController
   def confirm
     @total = 0
     @order = Order.new(order_params)
-    #@delivery = Delivery.find(params[:order][:delivery_id][:payment_method])
-    # @order.payment_method = params[:order][:payment_method]
     @cart_items = CartItem.all
     if params[:order][:delivery_number] == "1"
       @order.postcode = current_customer.postcode
@@ -23,9 +21,8 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-def index
+  def index
     @order = current_customer.orders.all
-    #@order = Order.find(params[:id])
   end
 
   def new
@@ -58,11 +55,11 @@ def index
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id, :freight, :total_payment, :order_status)
+    params.require(:order).permit(:payment, :postcode, :address, :name, :first_name, :last_name, :amount, :item_id, :freight, :total_payment, :order_status)
   end
 
   def cart_item_params
-    params.require(:cart_item).permit(:cart_item_id, :amount)
+    params.require(:cart_item).permit(:cart_item_id, :amount, :item)
   end
 
   def order_detail_params
