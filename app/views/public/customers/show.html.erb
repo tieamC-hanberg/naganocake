@@ -1,12 +1,16 @@
-<h2 class="mt-4"><strong>マイページ</strong></h2><br>
-<table class="table table-bordered">
+<div class='container'>
+  <div class=“row”>
+    <div class='mx-auto col-lg-6'>
+<h2 class="mt-4">
+  <strong>マイページ</strong></h2><br>
+  <table class="table table-bordered">
   <thead>
     <tr>
       <td>氏名</td>
       <td><%= @customer.full_name %></td>
     </tr>
     <tr>
-      <td>カナ</td>
+      <td>フリガナ</td>
       <td><%= @customer.full_name_kana %></td>
     </tr>
     <tr>
@@ -29,4 +33,8 @@
   </thead>
 </table>
 <%= link_to "編集する", edit_public_customer_path, class:"btn btn-success btn-block" %><br>
-    
+<%= link_to "注文履歴", public_orders_path, class:"btn btn-secondary btn-block" %><br>
+<%= link_to "注文履歴一覧", public_deliveries_path, class:"btn btn-dark btn-block" %><br>
+</div>
+</div>
+</div>

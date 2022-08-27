@@ -2,6 +2,15 @@ class Customer < ApplicationRecord
   has_many :cart_items
   has_many :deliveries
   has_many :orders
+  
+  validates :first_name,presence:true
+  validates :last_name,presence:true
+  validates :first_name_kana,presence:true
+  validates :last_name_kana,presence:true
+  validates :postcode,presence:true
+  validates :address,presence:true
+  validates :phone_number,presence:true
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,8 +21,6 @@ class Customer < ApplicationRecord
   def full_name_kana
     self.last_name_kana + " " + self.first_name_kana
   end
-  
-  
   
   # include JpPrefecture
   # jp_prefecture :prefecture_code
