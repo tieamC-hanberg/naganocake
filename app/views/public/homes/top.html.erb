@@ -1,25 +1,25 @@
-<p>ようこそ、ながのCAKEへ!<br>
-   このサイトは、ケーキ販売のECサイトになります。<br>
-   会員でない方も商品の閲覧はできますが、<br>
-   購入には会員登録が必要になります。
-</p>
-
-<h2>新着商品</h2>
-      <table class='table table-hover table-inverse'>
-        <thead>
-        </thead>
-        <tbody>
-          <% @items.each do |item| %>
-            <tr>
-              <td><%= image_tag item.image, size:'50x50' %></td>
-            </tr>
-            <tr>
-              <td><%= item.item_name %></td>
-            </tr>
-            <tr>
-              <td>¥<%= item.with_tax_price %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= link_to "全ての商品を見る", public_items_path %>
+<div class='container'>
+        <div class='d-flex align-items-center justify-content-center' style="height:300px;">
+           ようこそ、ながのCAKEへ!<br>
+           このサイトは、ケーキ販売のECサイトになります。<br>
+           会員でない方も商品の閲覧はできますが、<br>
+           購入には会員登録が必要になります。
+        </div>
+        <h2 class='d-flex justify-content-center'>新着商品</h2>
+              <div class='d-flex justify-content-center'>
+                <ul class="list-inline">
+                  <% @items.each do |item| %>
+                      <li class="list-inline-item">
+                        <%= link_to public_item_path(item.id) do %>
+                          <p><%= image_tag item.image, size:'150x100' %></p>
+                          <p><%= item.item_name %></p>
+                        <% end %>
+                         <p>¥<%= item.with_tax_price %></p>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="text-right">
+                <%= link_to "全ての商品を見る", public_items_path %>
+              </div>
+</div>
