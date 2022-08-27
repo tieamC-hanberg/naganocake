@@ -1,20 +1,32 @@
-    <h2>配送先編集</h2>
-    <%= form_with model:@delivery, url: public_deliveries_path(@delivery.id), local:true, method: :patch do |f| %>
-      <div class="form-group">
-        <%= f.label "郵便番号(ハイフンなし)" %>
-        <%= f.text_field :postcode %>
-      </div>
-      <div class="form-group">
-        <%= f.label "住所" %>
-        <%= f.file_field :address %>
-      </div>
-      <div class="form-group">
-        <%= f.label "宛名" %>
-        <%= f.file_field :name %>
-      </div>
-      <div class="form-group">
-        <%= f.submit class: 'btn btn-secondary' %>
-      </div>
-    <% end %>
+<div class="container">
+    <div class="d-flex align-items-center" style="height:100px;">
+      <h2>
+        配送先編集
+      </h2>
+    </div>
   </div>
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+       <div class="d-flex align-items-center">
+        <%= form_with model:@delivery, url: public_deliveries_path(@delivery.id), local:true, method: :patch do |f| %>
+          <div class="form-group">
+            <%= f.label "郵便番号(ハイフンなし)" %>
+            <%= f.text_field :postcode %>
+          </div>
+          <div class="form-group">
+            <%= f.label "住所" %>
+            <%= f.text_area :address %>
+          </div>
+          <div class="form-group">
+            <%= f.label "宛名" %>
+            <%= f.text_area :name %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "変更内容を保存", class: 'btn btn-outline-warning btn-sm' %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
 </div>
