@@ -1,35 +1,33 @@
-
-      <h2>商品一覧</h2>
-      <table class='table'>
-        <thead>
-        </thead>
-        <tbody>
-          <% @items.each do |item| %>
-            <% if item.sale_status == true %>
-            <tr>
-              <td><%= link_to public_item_path(item.id) do %>
-              <%= image_tag item.image, size:'50x50' %><br>
-              <%= item.item_name %>
+  <div class='container'>
+    <div class='row'>
+      <!--<div class='col-md-2'>-->
+        <%#= render 'genre', genres: @genres %>
+    <!--</div>-->
+      <div class="col-md-4 mt-5 mb-4" style="display:flex; flex-wrap:wrap;">
+          <h2>商品一覧</h2>
+          <div class="mt-3"><strong>（全<%= @items.count%>件）</strong></div>
+      </div>
+        <div style="display:flex; flex-wrap:wrap;">
+              <% @items.each do |item| %>
+                <% if item.sale_status == true %>
+                  <%= link_to public_item_path(item.id) do %>
+                    <li class="list-inline-item">
+                      <p><%= image_tag item.image, size:'230x130' %></p>
+                      <p><%= item.item_name %></p>
+                  <% end %>
+                      <p>¥<%= item.with_tax_price %></p>
+                    </li>
+                <% else %>
+                 <li class="list-inline-item">
+                  <p><%= image_tag item.image, size:'230x130' %><p>
+                  <p><%= item.item_name %></p>
+                  <p><%= "売り切れ" %></p>
+                </li>
+                <% end %>
               <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td>¥<%= item.with_tax_price %></td>
-            </tr>
-            <% else %>
-             <tr>
-              <td><%= image_tag item.image, size:'50x50' %><br>
-                  <%= item.item_name %>
-              </td>
-             </tr>
-             <tr>
-              <td><%= "売り切れ" %></td>
-            </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @items %>
-      <!--<p>-->
-        <%#= render 'index', items: @items %>
-      <!--</p>-->
+        </div>
+        <div style="margin:0 auto;">
+          <%= paginate @items %>
+        </div>
+    </div>
+  </div>
