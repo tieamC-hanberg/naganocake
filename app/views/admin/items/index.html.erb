@@ -9,4 +9,7 @@
     </div>
       <p><%= render 'index', items: @items %> </p>
   </div>
+   <div style="margin:0 auto;">
+    <%= paginate @items %>
+   </div>
 </div>
