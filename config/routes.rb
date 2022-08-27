@@ -45,6 +45,6 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update]
   resources :orders, only:[:show, :update]
-  patch "admin/orders/:order_id/order_details/:id" => "order_details#update"
+  patch "admin/order_details/:id" => "order_details#update"
   end
 end

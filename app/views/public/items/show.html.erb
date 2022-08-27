@@ -2,11 +2,11 @@
     <div class='d-flex justify-content-center'>
         <div class="text-center col-sm-5">
             <%= image_tag @item.image, size:"250x200" %>
-        </div class="col-sm-7">
+        </div>
                 <li class="list-inline-item">
                     <p><%= @item.item_name %></p>
-                    <p><%= @item.item_description %></p>
-                    <p>¥<%= @item.with_tax_price %>(税込)</p>
+                    <p class='mt-4'><%= @item.item_description %></p>
+                    <p class='mt-4'>¥<%= @item.with_tax_price %>(税込)</p>
                   <%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local:true do |f| %>
                     <%= f.hidden_field :item_id, :value => @item.id %>
                     <%= f.select :amount, options_for_select((1..10).to_a), {include_blank: '個数選択'}, class: 'sample' %>

@@ -6,7 +6,11 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order_details = @order.order_details
     @order.update(order_params)
+    if @order.order_status == "paid_up"
+       @order_details.update_all(make_status: "waitingproduction")
+    end
     redirect_to admin_order_path
   end
   private
