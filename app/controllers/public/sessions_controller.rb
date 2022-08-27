@@ -2,12 +2,12 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :customer_state, only: [:create]
-  
+
   def after_sign_in_path_for(resource)
      #public_homes_about_path
-     public_items_path
+     root_path
   end
-  
+
   def after_sign_out_path_for(resource)
     root_path
   end
@@ -41,7 +41,7 @@ class Public::SessionsController < Devise::SessionsController
     if @customer.valid_password?(params[:customer][:password])
       if @customer.is_deleted == true
         redirect_to new_customer_registration_path
-      
+
       end
     end
   end
