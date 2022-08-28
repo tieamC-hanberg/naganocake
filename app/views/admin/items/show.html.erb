@@ -1,0 +1,34 @@
+<div class='container m-5 mt-5'>
+    <div class='col-md-4 mt-4 mb-3'>
+          <h2>商品詳細</h2>
+    </div>
+    <div class='d-flex justify-content-center'>
+        <div class="text-center col-sm-5">
+            <tr>
+              <td><%= image_tag @items.image, size:"250x200" %>
+              </td>
+        </div>
+        <li class="list-inline-item">
+              <p>商品名<%= @items.item_name %></p>
+
+              <p>商品説明<%= @items.item_description %></p>
+
+              <p>ジャンル<%= @items.genre.name %></p>
+
+              <p>税込価格(税抜価格）<%= @items.with_tax_price %>（<%= @items.price %>）</p>
+
+              <p>販売ステータス<% if @items.sale_status == true %>
+                                <%= "販売中" %>
+                                <% else %>
+                                <%= "売り切れ" %>
+                                <% end %>
+              </p>
+        </li>
+    </div>
+
+</div>
+<div class='mx-auto col-lg-2'>
+  <div class="text-center">
+                <%= link_to '編集', edit_admin_item_path(@items.id), class: "btn btn-success btn-block" %>
+  </div>
+</div>

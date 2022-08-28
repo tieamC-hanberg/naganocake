@@ -1,0 +1,33 @@
+<div class='container'>
+  <div class="row">
+        <div class="col-md-8 mx-auto mb-4" style='height:260px; padding:40px;'>
+          <div style="background: url(/assets/naganocake_top.jpg); height:250px; width:100%; background-position:center; background-size: cover;">
+               <div class='text-white'  style="position:absolute; top:115px; left:160px; background-color: rgba(252,146,146,0.4); font-size: 14pt;">
+                 ようこそ、ながのCAKEへ!<br>
+                 このサイトは、ケーキ販売のECサイトになります。<br>
+                 会員でない方も商品の閲覧はできますが、<br>
+                 購入には会員登録が必要になります。
+               </div>
+        </div>
+  </div>
+        <div class='row'>
+          <h2 class='d-flex col-md-8 mx-auto mt-5 mb-4'>新着商品</h2>
+          <div class='d-flex justify-content-center col-md-11 mx-auto'>
+            <ul class="list-inline">
+              <% @items.each do |item| %>
+                  <li class="list-inline-item">
+                    <%= link_to public_item_path(item.id) do %>
+                      <p><%= image_tag item.image, size:'200x130' %></p>
+                      <p><%= item.item_name %></p>
+                    <% end %>
+                     <p>¥<%= item.with_tax_price %></p>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+</div>
+          <div class="text-right">
+            <%= link_to "全ての商品を見る", public_items_path %>
+          </div>
+

@@ -1,0 +1,38 @@
+<div class='container'>
+  <div class='row'>
+    <h2 class="col-md-4 mt-4 mb-4">
+      商品新規登録
+    </h2>
+  </div>
+  <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto ">
+      <%= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label "商品画像" %>
+          <%= f.file_field :image, accept: 'image/*', class: 'form-control-file admin_image' %>
+        </div>
+        <div class="form-group">
+          <%= f.label "商品名" %>
+          <%= f.text_field :item_name, class: 'form-control item_name', placeholder: "商品名" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "商品説明" %>
+          <%= f.text_area :item_description, class: 'form-control item_description', placeholder: "ここに説明文を記述します" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "ジャンル" %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '--選択してください--'} %>
+        </div>
+        <div class="form-group">
+          <%= f.label "税込価格" %>
+          <%= f.text_field :price,  class: 'form-control price', placeholder: "0000" %>円
+        </div>
+        <div class="form-group">
+          <%= f.label "販売ステータス" %>
+          <%= f.select :sale_status, [["販売中",true],["売り切れ",false]] %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "新規登録", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+  </div>

@@ -1,0 +1,11 @@
+  <div style="d-flex align-items-center height:100px;">
+    <%= form_with model:genre, url: admin_genres_path, local:true, method: :post do |f| %>
+      <span class="form-group">
+        <%= f.label "ジャンル名" %>
+        <%= f.text_field :name %>
+      </span>
+      <span  class="form-group">
+        &emsp;&emsp;&emsp;<%= f.submit "新規登録", class: 'btn btn-success' %>
+      </span>
+    <% end %>
+  </div>
